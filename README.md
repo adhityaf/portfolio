@@ -1,6 +1,6 @@
 # Adhitya Portfolio
 
-Portfolio satu halaman berbasis Next.js App Router dan Tailwind CSS. Build menghasilkan static export di `out/`, dapat disajikan langsung, melalui nginx dalam Docker, atau melalui GitHub Pages.
+Portfolio satu halaman berbasis Next.js App Router dan Tailwind CSS. Build menghasilkan static export di `out/`, dapat disajikan langsung, melalui nginx dalam Docker, atau melalui Vercel.
 
 ## Prasyarat
 
@@ -73,15 +73,14 @@ Semua perintah harus selesai tanpa error.
 
 ## Deployment
 
-Workflow `.github/workflows/deploy.yml` berjalan pada pull request ke `main`, push ke `main`, atau pemanggilan manual.
+Workflow `.github/workflows/deploy.yml` berjalan pada push ke `main` atau pemanggilan manual. Workflow menginstal dependensi, mengaudit kerentanan high severity, membangun aplikasi sekali dengan Vercel CLI, lalu menerbitkan hasil prebuilt ke production Vercel.
 
-Pull request menjalankan build dan audit. Push ke `main` juga:
+Push ke `main` juga:
 
-- menerbitkan static export ke GitHub Pages;
 - membuat image Docker;
 - mendorong image bertag `main` dan SHA commit ke GitHub Container Registry.
 
-Sebelum deployment pertama, buka **Settings → Pages** pada repository GitHub dan pilih **GitHub Actions** sebagai source.
+Workflow membutuhkan repository secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, dan `VERCEL_PROJECT_ID`. Project Vercel harus sudah ditautkan dan automatic deployment dinonaktifkan agar GitHub Actions menjadi satu-satunya jalur deployment production.
 
 Push perubahan:
 
@@ -91,11 +90,7 @@ git commit -m "feat: convert portfolio to Next.js static export"
 git push origin main
 ```
 
-Pantau workflow **Deploy portfolio** melalui tab **Actions**. URL GitHub Pages biasanya:
-
-```text
-https://<username>.github.io/<repository>/
-```
+Pantau workflow **Deploy portfolio** melalui tab **Actions** dan deployment production melalui dashboard Vercel.
 
 Jangan mengisi `candidate.portfolio_url` pada `profile.yml` sebelum URL tersebut aktif dan mengembalikan HTTP 200.
 
@@ -104,10 +99,10 @@ Jangan mengisi `candidate.portfolio_url` pada `profile.yml` sebelum URL tersebut
 - `app/page.tsx`: halaman portfolio
 - `app/layout.tsx`: root layout dan metadata
 - `app/globals.css`: Tailwind dan token tema
-- `next.config.ts`: konfigurasi static export dan base path GitHub Pages
+- `next.config.ts`: konfigurasi static export
 - `Dockerfile`: build multi-stage dan nginx unprivileged pada port 8080
 - `docker-compose.yml`: build dan jalankan container lokal di port 8080
-- `.github/workflows/deploy.yml`: audit, build, GitHub Pages, dan GHCR
+- `.github/workflows/deploy.yml`: audit, build dan deploy Vercel, serta publikasi GHCR
 
 ## Lisensi
 
