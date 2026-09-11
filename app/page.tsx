@@ -7,7 +7,6 @@ import { SkillMarquee } from "@/components/ui/skill-marquee";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { ScrollMotion } from "./scroll-motion";
 
-const assetPrefix = process.env.PAGES_BASE_PATH || "";
 
 const whatIBuildItems: readonly AnimatedScrollItem[] = [
   {
@@ -16,7 +15,7 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     title: "Mass Transfer & RDN",
     description:
       "Batch transactions across IFT, RTGS, Clearing, BI-FAST, and SWIFT. RabbitMQ event-driven architecture, up to 50,000 transactions per batch, 3× higher processing efficiency.",
-    image: `${assetPrefix}/what-i-build/transaction-platform.webp`,
+    image: "/what-i-build/transaction-platform.webp",
     imageAlt: "Circuit board representing high-throughput payment infrastructure",
     detail: "Go · RabbitMQ · gRPC · PostgreSQL · Redis",
   },
@@ -26,7 +25,7 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     title: "UKLN batching",
     description:
       "Batch module for users in Singapore and Timor Leste. Multi-IFT transactions, up to 10 per batch, so cross-border payments move in one submit.",
-    image: `${assetPrefix}/what-i-build/transaction-platform.webp`,
+    image: "/what-i-build/transaction-platform.webp",
     imageAlt: "Circuit board representing cross-border IFT batching infrastructure",
     detail: "Singapore · Timor Leste · multi-IFT",
   },
@@ -36,7 +35,7 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     title: "Bulog ERP",
     description:
       "ERP integration with Bulog for external transaction creation via APIs. Validation, approval, and payment processing in one path.",
-    image: `${assetPrefix}/what-i-build/workflow-automation.webp`,
+    image: "/what-i-build/workflow-automation.webp",
     imageAlt: "Dashboard representing ERP transaction validation and approval",
     detail: "APIs · validation · approval · payment",
   },
@@ -46,7 +45,7 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     title: "Account migration",
     description:
       "RDN search and filtering for 500,000+ customer accounts, 5× faster retrieval. Auth modules for 120,000+ users and 50,000+ companies from two legacy apps.",
-    image: `${assetPrefix}/what-i-build/account-migration.webp`,
+    image: "/what-i-build/account-migration.webp",
     imageAlt: "Server racks representing large-scale account migration infrastructure",
     detail: "500,000+ accounts · 120,000+ users · 50,000+ companies",
   },
@@ -56,7 +55,7 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     title: "Approval workflows",
     description:
       "Background processing and Redis caching on approval and rejection paths. Transaction latency down 50%, state still observable.",
-    image: `${assetPrefix}/what-i-build/workflow-automation.webp`,
+    image: "/what-i-build/workflow-automation.webp",
     imageAlt: "Analytics dashboard representing observable automated workflows",
     detail: "Redis · background jobs · event-driven architecture",
   },
@@ -66,7 +65,7 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     title: "AI-native delivery",
     description:
       "Custom skills and coding agents for features, tests, refactors, and remediation. Review, query checks, and deployment SOPs stay in the loop.",
-    image: `${assetPrefix}/what-i-build/ai-native-delivery.webp`,
+    image: "/what-i-build/ai-native-delivery.webp",
     imageAlt: "Developers collaborating at a laptop representing AI-assisted engineering",
     detail: "OpenCode · Oh My Pi · Copilot · Claude · Codex",
   },
@@ -87,7 +86,7 @@ const experienceSlides: readonly ExperienceSlide[] = [
       "Served as Acting Squad Lead for 2 months, leading Backend, Frontend, and QA on priorities, system design, code/query reviews, and deployment SOPs.",
       "Designed an AI-native development workflow with custom AI skills and coding agents (OpenCode, Oh My Pi) for feature implementation, unit testing, refactoring, and complex code remediation.",
     ],
-    image: `${assetPrefix}/what-i-build/transaction-platform.webp`,
+    image: "/what-i-build/transaction-platform.webp",
     imageAlt: "Circuit board representing high-throughput payment infrastructure at BRI",
     accent: "coral",
   },
@@ -102,7 +101,7 @@ const experienceSlides: readonly ExperienceSlide[] = [
       "Resolved an average of 50-100 technical support tickets per day during early payment feature stabilization, executing endpoint retriggers, SQL corrections, and API issue resolutions.",
       "Completed a 1-month intensive Golang bootcamp, building a CRUD RESTful API based on RESTful architecture and standard backend development practices.",
     ],
-    image: `${assetPrefix}/what-i-build/workflow-automation.webp`,
+    image: "/what-i-build/workflow-automation.webp",
     imageAlt: "Dashboard representing internal operations work at KoinWorks",
     accent: "blue",
   },
@@ -180,7 +179,7 @@ export default function Page() {
               </div>
             </div>
             <p className="m-0 w-full max-w-copy text-justify text-[1.02rem] text-muted [text-align-last:center]" data-scroll-reveal>Backend engineer building production-grade systems in Go. Experienced in event-driven services, authentication migrations, performance tuning, and system design—from code and query reviews through deployment SOPs and cross-functional delivery.</p>
-            <SkillMarquee rows={skillLogoRows} assetPrefix={assetPrefix} />
+            <SkillMarquee rows={skillLogoRows} assetPrefix="" />
           </div>
         </section>
 
