@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://adhityafebhiakbar.vercel.app"),
   title: "Adhitya Febhiakbar — Software Engineer",
   description:
     "Backend engineer. Golang payment systems at BRI: 50,000 transactions per batch, 500,000+ account migrations.",
@@ -10,7 +11,16 @@ export const metadata: Metadata = {
     title: "Adhitya Febhiakbar — Software Engineer",
     description:
       "Backend engineer. Golang payment systems at BRI: 50,000 transactions per batch, 500,000+ account migrations.",
+    url: "https://adhityafebhiakbar.vercel.app",
     type: "website",
+    images: [
+      {
+        url: "https://adhityafebhiakbar.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "AF — Adhitya Febhiakbar — Software Engineer",
+      },
+    ],
   },
 };
 
