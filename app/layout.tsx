@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Adhitya Febhiakbar — Backend Engineer",
+  title: "Adhitya Febhiakbar — Software Engineer",
   description:
     "Backend engineer. Golang payment systems at BRI: 50,000 transactions per batch, 500,000+ account migrations.",
   openGraph: {
-    title: "Adhitya Febhiakbar — Backend Engineer",
+    title: "Adhitya Febhiakbar — Software Engineer",
     description:
       "Backend engineer. Golang payment systems at BRI: 50,000 transactions per batch, 500,000+ account migrations.",
     type: "website",

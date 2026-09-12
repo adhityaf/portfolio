@@ -12,7 +12,7 @@ export function ScrollMotion() {
     const hero = document.querySelector<HTMLElement>(".scroll-hero");
     const animatedElements = [
       ...document.querySelectorAll<HTMLElement>(
-        "[data-scroll-heading], [data-scroll-grid], [data-scroll-card]",
+        "[data-scroll-heading], [data-scroll-grid], [data-scroll-card], [data-scroll-reveal]",
       ),
     ];
     let animationFrame: number | null = null;
