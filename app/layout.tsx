@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       {
         url: "https://adhityafebhiakbar.vercel.app/og-image.png",
         width: 1200,
-        height: 627,
+        height: 630,
         alt: "AF — Adhitya Febhiakbar — Software Engineer",
       },
     ],

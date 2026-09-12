@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <title>Adhitya Febhiakbar — Software Engineer</title>
+  <desc>Backend engineering portfolio. Go, PostgreSQL, RabbitMQ, Redis, and gRPC. Up to 50,000 transactions per batch, 500,000+ accounts migrated, and 50% lower transaction latency.</desc>
+  <defs>
+    <radialGradient id="glow" cx="1" cy="0" r="1.1"><stop stop-color="#163547"/><stop offset="0.64" stop-color="#0B0F19"/></radialGradient>
+    <linearGradient id="accent" x1="64" y1="0" x2="1136" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#50D7F5"/><stop offset="1" stop-color="#50D7F5" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0B0F19"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M858 0V114M930 0V114M1002 0V114M1074 0V114M1146 0V114M822 42H1200M822 114H1200" stroke="#50D7F5" stroke-opacity="0.065"/>
+  <rect x="64" width="1072" height="3" fill="url(#accent)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="64" y="48" width="44" height="44" rx="12" fill="#122432" stroke="#29404E"/>
+    <text x="86" y="77" text-anchor="middle" fill="#50D7F5" font-size="19" font-weight="700" letter-spacing="-1">AF</text>
+    <text x="125" y="76" fill="#E7EEF6" font-size="17" font-weight="700" letter-spacing="3">PORTFOLIO</text>
+    <text x="1136" y="76" text-anchor="end" fill="#8FA7B7" font-size="15" letter-spacing="2">BACKEND ENGINEERING</text>
+    <text x="64" y="166" fill="#50D7F5" font-size="17" font-weight="700" letter-spacing="3.5">SOFTWARE ENGINEER</text>
+    <text x="59" y="254" fill="#F4F7FC" font-size="82" font-weight="700" letter-spacing="-4">Adhitya</text>
+    <text x="59" y="342" fill="#F4F7FC" font-size="82" font-weight="700" letter-spacing="-4">Febhiakbar<tspan fill="#50D7F5">.</tspan></text>
+    <text x="64" y="393" fill="#B4C2D1" font-size="25">Reliable backend. Real-world scale.</text>
+    <text x="64" y="428" fill="#8F9FAF" font-size="19">Payment systems · Event-driven architecture</text>
+    <g font-size="16" fill="#C6D5E3">
+      <rect x="64" y="460" width="54" height="34" rx="7" fill="#122432" stroke="#234455"/>
+      <text x="91" y="483" text-anchor="middle" fill="#6BDFF7" font-weight="700">Go</text>
+      <text x="136" y="483">PostgreSQL</text>
+      <circle cx="244" cy="477" r="2" fill="#526573"/>
+      <text x="261" y="483">RabbitMQ</text>
+      <circle cx="357" cy="477" r="2" fill="#526573"/>
+      <text x="374" y="483">Redis</text>
+      <circle cx="437" cy="477" r="2" fill="#526573"/>
+      <text x="454" y="483">gRPC</text>
+    </g>
+    <path d="M802 148V494" stroke="#263A49"/>
+    <text x="848" y="166" fill="#8FA7B7" font-size="12" font-weight="700" letter-spacing="2.6">PRODUCTION IMPACT</text>
+    <text x="846" y="230" fill="#F4F7FC" font-size="48" font-weight="700" letter-spacing="-2">50,000</text>
+    <text x="848" y="259" fill="#A3B5C6" font-size="17">Transactions / batch · up to</text>
+    <path d="M848 285H1136" stroke="#213341"/>
+    <text x="846" y="344" fill="#F4F7FC" font-size="48" font-weight="700" letter-spacing="-2">500,000<tspan fill="#50D7F5">+</tspan></text>
+    <text x="848" y="373" fill="#A3B5C6" font-size="17">Accounts migrated</text>
+    <path d="M848 399H1136" stroke="#213341"/>
+    <text x="846" y="458" fill="#50D7F5" font-size="48" font-weight="700" letter-spacing="-2">50%</text>
+    <text x="848" y="487" fill="#A3B5C6" font-size="17">Lower transaction latency</text>
+    <path d="M64 533H1136" stroke="#263443"/>
+    <text x="64" y="578" fill="#D0DCE8" font-size="20">adhityafebhiakbar.vercel.app</text>
+    <text x="1098" y="578" text-anchor="end" fill="#8FA7B7" font-size="15" letter-spacing="1">EXPLORE MY WORK</text>
+    <path d="M1115 574H1135M1127 566L1135 574L1127 582" stroke="#50D7F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
