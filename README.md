@@ -73,6 +73,8 @@ Semua perintah harus selesai tanpa error.
 
 ## Deployment
 
+Situs production tersedia di [adhityafebhiakbar.vercel.app](https://adhityafebhiakbar.vercel.app) dan menyediakan kartu pratinjau bermerek saat tautannya dibagikan di LinkedIn.
+
 Workflow `.github/workflows/deploy.yml` berjalan pada push ke `main` atau pemanggilan manual. Workflow menginstal dependensi, mengaudit kerentanan high severity, membangun aplikasi sekali dengan Vercel CLI, lalu menerbitkan hasil prebuilt ke production Vercel.
 
 Push ke `main` juga:
