@@ -96,6 +96,10 @@ html[data-theme="nordic"] {
     transform-origin: left;
   }
 
+  html[data-theme="nordic"] .scroll-progress {
+    background: #1d4ed8;
+  }
+
   .bg-surface {
     backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--line);
@@ -294,7 +298,6 @@ html[data-theme="nordic"] {
     to { opacity: 0; transform: translate3d(0, 1.1rem, 0); }
   }
 }
-
 html[data-theme="nordic"] .project-image {
   opacity: 1 !important;
 }
