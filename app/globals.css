@@ -59,7 +59,7 @@ html[data-theme="nordic"] {
 
 @layer base {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     scroll-snap-type: y proximity;
     background: var(--color-canvas);
   }
@@ -75,9 +75,8 @@ html[data-theme="nordic"] {
 
   @media (prefers-reduced-motion: reduce) {
     html {
-      scroll-behavior: auto;
+      scroll-behavior: auto !important;
     }
-
     body {
       transition: none;
     }
@@ -134,28 +133,49 @@ html[data-theme="nordic"] {
     opacity: var(--hero-opacity, 1);
     transform: translate3d(0, var(--hero-shift, 0), 0);
     will-change: opacity, transform;
+    transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1), transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .scroll-motion .scroll-section {
-    will-change: auto;
+    will-change: opacity, transform;
+    transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .scroll-motion [data-scroll-heading],
   .scroll-motion [data-scroll-grid] > *,
   .scroll-motion [data-scroll-card],
+  .scroll-motion [data-scroll-reveal],
   .scroll-motion footer [data-scroll-reveal] {
     opacity: 0;
-    transform: translate3d(0, 2.5rem, 0) scale(0.985);
+    transform: translate3d(0, 2rem, 0) scale(0.985);
     transition:
       opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
   }
-
   .scroll-motion [data-scroll-visible],
+  .scroll-motion [data-scroll-reveal][data-scroll-visible],
   .scroll-motion footer [data-scroll-reveal][data-scroll-visible],
   .scroll-motion [data-scroll-grid][data-scroll-visible] > * {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .back-to-top {
+    transition:
+      opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 200ms ease,
+      color 200ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+  }
+
+  .back-to-top:active {
+    transform: translateY(0) scale(0.95);
   }
 
   .scroll-motion [data-scroll-grid][data-scroll-visible] > *:nth-child(2) {
@@ -343,14 +363,16 @@ html[data-theme="nordic"] .project-image-overlay {
   [data-scroll-heading],
   [data-scroll-grid] > *,
   [data-scroll-card],
-  footer [data-scroll-reveal] {
+  [data-scroll-reveal],
+  footer [data-scroll-reveal],
+  .back-to-top {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
   }
 
-
   html {
+    scroll-behavior: auto !important;
     scroll-snap-type: none;
   }
 

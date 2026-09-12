@@ -142,7 +142,7 @@ export default function Page() {
       <div className="scroll-progress print:hidden" aria-hidden="true" />
       <ScrollMotion />
       <a
-        className="fixed right-4 bottom-4 z-30 grid size-11 place-items-center rounded-full bg-surface-strong text-ink hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral nav:right-6 nav:bottom-6 print:hidden"
+        className="back-to-top fixed right-4 bottom-4 z-30 grid size-11 place-items-center rounded-full bg-surface-strong text-ink transition-all duration-300 ease-out hover:-translate-y-1 hover:text-coral hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral active:translate-y-0 active:scale-95 nav:right-6 nav:bottom-6 print:hidden"
         href="#top"
         aria-label="Back to About"
         title="Back to About"
@@ -174,11 +174,11 @@ export default function Page() {
             <div className="flex min-w-0 items-center justify-center gap-5" data-scroll-reveal>
               <div className="grid size-16 shrink-0 place-items-center rounded-full bg-surface-strong text-xl font-extrabold tracking-[-0.06em] text-coral print:size-14" aria-hidden="true">AF</div>
               <div className="min-w-0 text-left">
-                <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">Backend Engineer</p>
+                <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">Software Engineer</p>
                 <h1 className="mt-2 max-w-[16ch] text-[clamp(2.4rem,8vw,4.25rem)] leading-[0.95] font-bold tracking-[-0.07em] print:text-5xl" id="page-title">Adhitya Febhiakbar</h1>
               </div>
             </div>
-            <p className="m-0 w-full max-w-copy text-justify text-[1.02rem] text-muted [text-align-last:center]" data-scroll-reveal>Backend engineer building production-grade systems in Go. Experienced in event-driven services, authentication migrations, performance tuning, and system design—from code and query reviews through deployment SOPs and cross-functional delivery.</p>
+            <p className="m-0 w-full max-w-copy text-justify text-[1.02rem] text-muted [text-align-last:center]" data-scroll-reveal>Software engineer specialized in building reliable, high-throughput systems. I spend my time designing event-driven services, handling large-scale data migrations, and making sure APIs stay resilient under real production traffic. Tech-stack agnostic, deeply focused on solid architecture, automated testing, and code that is easy to maintain.</p>
             <SkillMarquee rows={skillLogoRows} assetPrefix="" />
           </div>
         </section>
@@ -190,11 +190,11 @@ export default function Page() {
 
 
       <footer className="viewport-section scroll-section flex h-svh flex-col items-center justify-center-safe overflow-y-auto px-4 py-14 text-center xs:px-6 nav:py-16 print:h-auto print:overflow-visible print:px-0 print:py-8" id="contact" aria-labelledby="contact-title">
-        <div className="flex w-full shrink-0 flex-col items-center gap-6">
+        <div className="flex w-full shrink-0 flex-col items-center gap-6" data-scroll-reveal>
           <div>
             <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">Contact</p>
-            <h2 className="mx-auto mt-2 max-w-[16ch] text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.055em]" id="contact-title">Let’s build the next reliable system</h2>
-            <p className="mx-auto mt-5 w-full max-w-copy text-justify text-[1.25rem] leading-[1.65] text-muted [text-align-last:center]">I want to work with teams that care how a system behaves in production, not only on a slide. <strong className="font-bold text-ink">Backend-heavy fullstack:</strong> APIs, data, and the UI that has to live with them. I use coding agents to move faster, and I stay <strong className="font-bold text-ink">accountable</strong> for the review, the tests, and the code other people have to maintain.</p>
+            <h2 className="mx-auto mt-2 max-w-[24ch] text-[clamp(1.85rem,4vw,3rem)] leading-tight font-bold tracking-[-0.055em]" id="contact-title">Ready to team up?</h2>
+            <p className="mx-auto mt-5 w-full max-w-copy text-justify text-[1.25rem] leading-[1.65] text-muted [text-align-last:center]">There&apos;s still room in my experience section. If you want backend systems that are fast, reliable, and actually survive production traffic—let&apos;s talk before someone else takes the slot. I move fast with modern tools, but I stay fully accountable for the reviews, the test suites, and every line of code that hits production. No excuses, just clean execution.</p>
           </div>
           <ContactActions />
         </div>
