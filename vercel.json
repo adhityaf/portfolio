@@ -4,6 +4,10 @@
     {
       "source": "/",
       "destination": "/index"
+    },
+    {
+      "source": "/google8e5e34a93618c3b6.html",
+      "destination": "/google8e5e34a93618c3b6"
     }
   ]
 }
