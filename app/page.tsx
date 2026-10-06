@@ -66,7 +66,7 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     description: "Built backend workflows with five specialist agent roles and seven reusable skills for feature development, testing, refactoring, and complex code remediation. Unit tests, runtime verification, and code review keep AI-assisted changes grounded in evidence, with clear handoffs before release.",
     image: "/what-i-build/ai-native-delivery.webp",
     imageAlt: "Developers collaborating at a laptop representing AI-assisted engineering",
-    detail: "OpenCode · Oh My Pi · Copilot · Claude · ChatGPT",
+    detail: "OpenCode · Oh My Pi · Grok · Claude · ChatGPT",
   },
 ];
 
