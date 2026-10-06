@@ -24,6 +24,8 @@ npm run dev
 
 Buka [http://localhost:3000](http://localhost:3000). Hentikan server dengan `Ctrl+C`.
 
+`next-env.d.ts` dibuat ulang oleh Next.js dan tidak dilacak Git. Baseline patch keamanan: Next.js 16.3.8 dan `source-map-js` 1.2.2 di `package-lock.json`.
+
 ## Static export
 
 Build aplikasi:
