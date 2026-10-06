@@ -63,11 +63,10 @@ const whatIBuildItems: readonly AnimatedScrollItem[] = [
     id: "ai-native-delivery",
     eyebrow: "BRI · delivery",
     title: "AI-native delivery",
-    description:
-      "Custom skills and coding agents for features, tests, refactors, and remediation. Review, query checks, and deployment SOPs stay in the loop.",
+    description: "Built backend workflows with five specialist agent roles and seven reusable skills for feature development, testing, refactoring, and complex code remediation. Unit tests, runtime verification, and code review keep AI-assisted changes grounded in evidence, with clear handoffs before release.",
     image: "/what-i-build/ai-native-delivery.webp",
     imageAlt: "Developers collaborating at a laptop representing AI-assisted engineering",
-    detail: "OpenCode · Oh My Pi · Copilot · Claude · Codex",
+    detail: "OpenCode · Oh My Pi · Copilot · Claude · ChatGPT",
   },
 ];
 
@@ -130,7 +129,7 @@ const skillLogoRows = [
     { id: "opencode", name: "OpenCode" },
     { id: "github-copilot", name: "GitHub Copilot" },
     { id: "claude", name: "Claude" },
-    { id: "openai", name: "OpenAI Codex" },
+    { id: "openai", name: "ChatGPT" },
     { id: "grok", name: "Grok" },
   ],
 ] as const;
@@ -194,7 +193,7 @@ export default function Page() {
           <div>
             <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">Contact</p>
             <h2 className="mx-auto mt-2 max-w-[24ch] text-[clamp(1.85rem,4vw,3rem)] leading-tight font-bold tracking-[-0.055em]" id="contact-title">Ready to team up?</h2>
-            <p className="mx-auto mt-5 w-full max-w-copy text-justify text-[1.25rem] leading-[1.65] text-muted [text-align-last:center]">There&apos;s still room in my experience section. If you want backend systems that are fast, reliable, and actually survive production traffic—let&apos;s talk before someone else takes the slot. I move fast with modern tools, but I stay fully accountable for the reviews, the test suites, and every line of code that hits production. No excuses, just clean execution.</p>
+            <p className="mx-auto mt-5 w-full max-w-copy text-justify text-[1.25rem] leading-[1.65] text-muted [text-align-last:center]">There&apos;s still room in my experience section. If you want an engineer who pairs production experience with accountable AI-assisted delivery, let&apos;s talk. I build backend systems for high-volume payments, large-scale migrations, and resilient APIs. My AI-native workflow combines custom skills and specialist coding agents with unit tests, runtime verification, and code review.</p>
           </div>
           <ContactActions />
         </div>
