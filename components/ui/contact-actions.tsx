@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 const email = "adhityafebhiakbar@gmail.com";
 
 const actionClass =
-  "inline-flex min-h-11 items-center gap-2 rounded-full bg-surface px-5 py-3 text-sm font-bold hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral";
+  "inline-flex min-h-12 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-surface px-2 py-3 text-sm font-bold hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral nav:min-h-11 nav:gap-2 nav:px-5";
 
 function MailIcon() {
   return (
@@ -72,7 +72,7 @@ export function ContactActions() {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-center gap-3" aria-label="Contact links">
+    <nav className="grid w-full max-w-sm grid-cols-2 gap-3 nav:flex nav:w-auto nav:max-w-none nav:flex-wrap nav:items-center nav:justify-center" aria-label="Contact links">
       <button
         type="button"
         className={actionClass}

@@ -23,27 +23,32 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const printPreference = window.matchMedia("print");
+    const mobilePreference = window.matchMedia("(width < 43.75rem)");
     const updatePreferences = () => {
       setReducedMotion(motionPreference.matches);
       setIsPrinting(printPreference.matches);
+      setIsMobile(mobilePreference.matches);
     };
 
     setIsHydrated(true);
     updatePreferences();
     motionPreference.addEventListener("change", updatePreferences);
     printPreference.addEventListener("change", updatePreferences);
+    mobilePreference.addEventListener("change", updatePreferences);
     return () => {
       motionPreference.removeEventListener("change", updatePreferences);
       printPreference.removeEventListener("change", updatePreferences);
+      mobilePreference.removeEventListener("change", updatePreferences);
     };
   }, []);
 
   useEffect(() => {
-    if (reducedMotion || items.length < 2) return;
+    if (!isHydrated || isMobile || isPrinting || reducedMotion || items.length < 2) return;
 
     const updatePage = () => {
       animationFrame.current = null;
@@ -74,9 +79,10 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
       window.removeEventListener("resize", requestUpdate);
       if (animationFrame.current !== null) {
         window.cancelAnimationFrame(animationFrame.current);
+        animationFrame.current = null;
       }
     };
-  }, [items.length, reducedMotion]);
+  }, [isHydrated, isMobile, isPrinting, items.length, reducedMotion]);
 
   const navigateTo = (index: number) => {
     const section = sectionRef.current;
@@ -93,11 +99,11 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
 
   if (items.length === 0) return null;
 
-  if (!isHydrated || reducedMotion || isPrinting) {
+  if (!isHydrated || isMobile || reducedMotion || isPrinting) {
     return (
       <section
         id="projects"
-        className="scroll-mt-32 bg-surface py-14 nav:py-16"
+        className="bg-surface py-14 nav:scroll-mt-32 nav:py-16"
         aria-labelledby="projects-title"
       >
         <div className="mx-auto w-[calc(100%-2rem)] max-w-frame xs:w-[calc(100%-3rem)]">
@@ -110,28 +116,29 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
           >
             Projects
           </h2>
-          <div className="mt-8 grid gap-4">
+          <div className="mt-8 grid gap-6 nav:gap-4">
             {items.map((item) => (
               <article
                 key={item.id}
                 className="overflow-hidden rounded-lg bg-canvas nav:grid nav:grid-cols-2"
               >
                 <img
-                  className="h-64 w-full object-cover nav:h-full"
+                  className="aspect-video h-auto w-full object-cover nav:aspect-auto nav:h-full"
                   src={item.image}
                   alt={item.imageAlt}
                   width="1600"
                   height="1067"
+                  loading="lazy"
                 />
-                <div className="grid content-center p-6 nav:p-10">
+                <div className="grid content-center p-5 nav:p-10">
                   <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">
                     {item.eyebrow}
                   </p>
                   <h3 className="mt-3 text-2xl leading-tight font-bold tracking-[-0.04em]">
                     {item.title}
                   </h3>
-                  <p className="mt-4 text-copy">{item.description}</p>
-                  <p className="mt-5 text-sm text-muted">{item.detail}</p>
+                  <p className="mt-4 leading-7 text-copy nav:leading-[1.65]">{item.description}</p>
+                  <p className="mt-5 text-sm leading-6 text-copy nav:leading-5 nav:text-muted">{item.detail}</p>
                 </div>
               </article>
             ))}

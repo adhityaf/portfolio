@@ -161,7 +161,7 @@ export function SkillMarquee({
 
   return (
     <div className="mx-auto mt-2 grid w-full min-w-0 max-w-2xl gap-5">
-      <p className="m-0 text-center text-sm text-muted" aria-live="polite" aria-atomic="true">
+      <p className="m-0 text-center text-sm text-copy nav:text-muted" aria-live="polite" aria-atomic="true">
         I work with <span className="font-semibold text-ink">{activeName}</span>
       </p>
       {reducedMotion ? (

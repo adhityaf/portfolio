@@ -38,26 +38,31 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const print = window.matchMedia("print");
+    const mobile = window.matchMedia("(width < 43.75rem)");
     const sync = () => {
       setReducedMotion(motion.matches);
       setIsPrinting(print.matches);
+      setIsMobile(mobile.matches);
     };
     setIsHydrated(true);
     sync();
     motion.addEventListener("change", sync);
     print.addEventListener("change", sync);
+    mobile.addEventListener("change", sync);
     return () => {
       motion.removeEventListener("change", sync);
       print.removeEventListener("change", sync);
+      mobile.removeEventListener("change", sync);
     };
   }, []);
 
   useEffect(() => {
-    if (reducedMotion || slides.length < 2) return;
+    if (!isHydrated || isMobile || isPrinting || reducedMotion || slides.length < 2) return;
 
     const updatePage = () => {
       animationFrame.current = null;
@@ -87,9 +92,10 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
       window.removeEventListener("resize", requestUpdate);
       if (animationFrame.current !== null) {
         window.cancelAnimationFrame(animationFrame.current);
+        animationFrame.current = null;
       }
     };
-  }, [reducedMotion, slides.length]);
+  }, [isHydrated, isMobile, isPrinting, reducedMotion, slides.length]);
 
   const navigateTo = (index: number) => {
     const section = sectionRef.current;
@@ -107,31 +113,50 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
   if (slides.length === 0) return null;
 
   const current = slides[currentIndex];
-  const staticMode = !isHydrated || reducedMotion || isPrinting;
+  const staticMode = !isHydrated || isMobile || reducedMotion || isPrinting;
 
   if (staticMode) {
     return (
       <section
         id="experience"
-        className="viewport-section scroll-section mx-auto flex h-svh w-[calc(100%-2rem)] max-w-frame flex-col justify-center-safe overflow-y-auto pt-28 pb-10 xs:w-[calc(100%-3rem)] nav:pt-24 nav:pb-12 print:h-auto print:w-full print:max-w-none print:overflow-visible print:py-8"
+        className="viewport-section scroll-section mx-auto flex w-[calc(100%-2rem)] max-w-frame flex-col justify-center-safe py-14 xs:w-[calc(100%-3rem)] nav:h-svh nav:overflow-y-auto nav:pt-24 nav:pb-12 print:h-auto print:w-full print:max-w-none print:overflow-visible print:py-8"
         aria-labelledby="experience-title"
       >
         <div data-scroll-heading>
           <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-blue uppercase">Career</p>
           <h2 className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.055em]" id="experience-title">Experience</h2>
         </div>
-        <div className="mt-8 grid gap-4">
+        <nav className="mt-6 grid grid-cols-2 gap-3 nav:hidden print:hidden" aria-label="Experience">
           {slides.map((slide) => (
-            <article key={slide.id} className="rounded-lg bg-surface p-6 nav:p-8 print:break-inside-avoid" data-scroll-card>
+            <a
+              key={slide.id}
+              href={`#experience-${slide.id}`}
+              className="flex min-h-11 items-center rounded-lg bg-surface px-3 py-3 text-sm font-semibold text-copy hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral"
+            >
+              {slide.title}
+            </a>
+          ))}
+        </nav>
+        <div className="mt-6 grid gap-6 nav:mt-8 nav:gap-4">
+          {slides.map((slide) => (
+            <article key={slide.id} id={`experience-${slide.id}`} className="rounded-lg bg-surface p-5 nav:p-8 print:break-inside-avoid" data-scroll-card>
               <div className="flex flex-col gap-4 nav:flex-row nav:items-start nav:justify-between nav:gap-8">
                 <div className="min-w-0">
                   <p className="mb-2 text-[0.68rem] font-extrabold tracking-[0.12em] text-coral" aria-hidden="true">{slide.mark}</p>
                   <h3 className="m-0 text-xl font-bold tracking-[-0.02em]">{slide.title}</h3>
-                  <p className="mt-1 text-sm text-muted">{slide.subtitle}</p>
+                  <p className="mt-1 text-sm leading-6 text-copy nav:leading-5 nav:text-muted">{slide.subtitle}</p>
                 </div>
-                <p className="m-0 shrink-0 text-xs leading-6 text-muted uppercase">{slide.period}</p>
+                <p className="m-0 shrink-0 text-xs leading-6 text-copy uppercase nav:text-muted">{slide.period}</p>
               </div>
-              <ul className="mt-6 list-disc space-y-3 pl-5 text-copy marker:text-blue">
+              <img
+                src={slide.image}
+                alt={slide.imageAlt}
+                width={1440}
+                height={900}
+                loading="lazy"
+                className="mt-5 aspect-video h-auto w-full rounded object-cover nav:hidden print:hidden"
+              />
+              <ul className="mt-6 list-disc space-y-4 pl-5 leading-7 text-copy marker:text-blue nav:space-y-3 nav:leading-[1.65]">
                 {slide.highlights.map((item) => (
                   <li key={item}>{item}</li>
                 ))}

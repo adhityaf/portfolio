@@ -83,6 +83,64 @@ html[data-theme="nordic"] {
   }
 }
 
+@media (width < 43.75rem) {
+  html {
+    scroll-snap-type: none;
+    scroll-padding-top: 5rem;
+  }
+
+  .viewport-section,
+  .viewport-snap-point {
+    scroll-snap-align: none;
+  }
+
+  .scroll-motion .scroll-hero,
+  .scroll-motion [data-scroll-reveal],
+  .scroll-motion [data-scroll-heading],
+  .scroll-motion [data-scroll-card] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .scroll-header {
+    background-color: var(--surface-strong);
+  }
+
+  .header-menu {
+    position: absolute;
+    inset: 100% -1px auto;
+    display: none;
+    max-height: calc(100svh - 4.125rem);
+    overflow-y: auto;
+    padding: 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-strong);
+  }
+
+  .header-menu[data-open="true"] {
+    display: grid;
+    gap: 1rem;
+  }
+
+
+  .primary-navigation a {
+    border-left: 2px solid transparent;
+  }
+
+  .primary-navigation a[aria-current="location"] {
+    border-left-color: var(--brand);
+    background: var(--canvas);
+    color: var(--brand);
+  }
+
+  @media (width >= 23.75rem) {
+    .header-menu {
+      padding-inline: 1.5rem;
+    }
+  }
+}
+
 @layer components {
   .scroll-progress {
     position: fixed;

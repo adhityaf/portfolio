@@ -26,6 +26,26 @@ Buka [http://localhost:3000](http://localhost:3000). Hentikan server dengan `Ctr
 
 `next-env.d.ts` dibuat ulang oleh Next.js dan tidak dilacak Git. Baseline patch keamanan: Next.js 16.3.8 dan `source-map-js` 1.2.2 di `package-lock.json`.
 
+### Tampilan mobile
+
+Di bawah breakpoint `nav` (`43.75rem` / 700px), halaman memakai scroll dokumen biasa: Experience menampilkan seluruh highlight dengan tautan ke masing-masing perusahaan, sedangkan Projects memakai kartu satu kolom dan gambar rasio 16:9. Tidak ada panel scroll bersarang atau pergantian proyek berdasarkan posisi scroll. Header menampilkan AF di kiri serta satu tombol ganti tema tepat di kiri hamburger, dengan jarak antartombol 8px. Dropdown hanya berisi About, Experience, Projects, dan Contact; bagian aktif ditandai warna serta garis samping, termasuk saat reduced motion. Tinggi header tetap 66px saat menu dibuka, offset anchor 80px, dan target sentuh minimal 44px. Teks utama rata kiri memakai token `copy` agar terbaca pada kedua tema.
+
+Tombol menu menyediakan `aria-expanded` dan `aria-controls`. Saat tertutup, isi dropdown tidak masuk urutan Tab. Escape menutup menu dan mengembalikan fokus ke tombol; memilih bagian atau logo menutup menu sebelum menuju tujuan. Perpindahan ke desktop mereset status menu agar tetap tertutup saat kembali ke mobile.
+
+Tombol tema mobile bekerja sekali tekan: ikon matahari berarti beralih ke Nordic, ikon bulan berarti beralih ke Fintech, dengan label aksesibel sesuai tujuan. Pilihan tersimpan saat reload. Kontrol mobile dan selector dua tombol desktop memakai satu state serta jalur penyimpanan yang sama agar sinkron ketika ukuran layar berubah; posisi dan tampilan selector desktop tetap.
+
+Tombol kontak mobile memakai grid dua kolom, tinggi seragam 48px, font 14px, dan ikon 18px. Padding horizontal 8px serta jarak ikon 6px menjaga seluruh label, termasuk Download CV, dalam satu baris tanpa memotong teks. Mulai 700px, padding 20px dan jarak 8px desktop dikembalikan.
+
+Mulai 700px, presentasi sticky dan animasi desktop tetap digunakan. Preferensi reduced motion dan tampilan cetak tetap memakai konten statis. Copy, label Grok, pilihan tema, tautan kontak, dan PDF CV tidak berubah.
+
+Preview lokal tanpa deployment:
+
+```bash
+npm run dev -- --hostname 127.0.0.1 --port 3010
+```
+
+Periksa lebar 320, 375, 390, 430, 590, 699, dan 1440px: menu tertutup/terbuka, toggle tema berulang dan persistensi reload, sinkronisasi tema saat resize, Escape dan fokus, urutan Tab, reset breakpoint, navigasi bagian dan penanda aktif, tautan/kontrol Experience, seluruh proyek, kedua tema, label tombol kontak satu baris, salin email, unduh CV, overflow horizontal, dan error console.
+
 ## Static export
 
 Build aplikasi:
