@@ -17,6 +17,8 @@ export function ExperienceHighlights({
   const [direction, setDirection] = useState<"up" | "down">("up");
   const [hovered, setHovered] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [paused, setPaused] = useState(false);
   const pendingRef = useRef<number | null>(null);
   const lockedRef = useRef(false);
 
@@ -29,6 +31,23 @@ export function ExperienceHighlights({
   }, []);
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    let intersecting = false;
+    const sync = () => setVisible(intersecting && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => {
+      intersecting = entry.isIntersecting;
+      sync();
+    });
+    observer.observe(container);
+    document.addEventListener("visibilitychange", sync);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+    };
+  }, []);
+
+  useEffect(() => {
     setIndex(0);
     setPhase("idle");
     setDirection("up");
@@ -38,14 +57,14 @@ export function ExperienceHighlights({
   }, [items]);
 
   useEffect(() => {
-    if (hovered || reducedMotion || items.length < 2 || phase !== "idle") return;
+    if (hovered || paused || !visible || reducedMotion || items.length < 2 || phase !== "idle") return;
     const hold = window.setTimeout(() => {
       setDirection("up");
       pendingRef.current = (index + 1) % items.length;
       setPhase("out");
-    }, 2000);
+    }, 7000);
     return () => window.clearTimeout(hold);
-  }, [hovered, index, items.length, phase, reducedMotion]);
+  }, [hovered, paused, visible, index, items.length, phase, reducedMotion]);
 
   useEffect(() => {
     if (phase === "out" && pendingRef.current !== null) {
@@ -125,6 +144,16 @@ export function ExperienceHighlights({
       <p key={`${index}-${phase === "in" ? "in" : "stay"}`} className={`m-0 max-w-copy text-copy ${motionClass}`}>
         {items[index]}
       </p>
+      <div className="mt-3 flex items-center gap-4 text-sm text-muted">
+        <button type="button" className="min-h-11 hover:text-coral" aria-pressed={paused} onClick={() => setPaused((value) => !value)}>
+          {paused ? "Resume highlights" : "Pause highlights"}
+        </button>
+        <button type="button" className="min-h-11 hover:text-coral" onClick={() => {
+          setPaused(true);
+          setIndex((value) => (value + 1) % items.length);
+          setPhase("idle");
+        }}>Next highlight <span aria-hidden="true">{index + 1}/{items.length}</span></button>
+      </div>
     </div>
   );
 }

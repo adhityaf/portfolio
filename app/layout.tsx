@@ -32,9 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-canvas" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+        <link rel="preload" href="/fonts/inter-latin-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(()=>{try{const s=localStorage.getItem("portfolio-theme")||localStorage.getItem("theme");const t=s==="nordic"||s==="light"?"nordic":"fintech";document.documentElement.dataset.theme=t;}catch{document.documentElement.dataset.theme="fintech"}})();`,

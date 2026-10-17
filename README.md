@@ -38,6 +38,17 @@ Tombol kontak mobile memakai grid dua kolom, tinggi seragam 48px, font 14px, dan
 
 Mulai 700px, presentasi sticky dan animasi desktop tetap digunakan. Preferensi reduced motion dan tampilan cetak tetap memakai konten statis. Copy, label Grok, pilihan tema, tautan kontak, dan PDF CV tidak berubah.
 
+### Penyempurnaan visual dan animasi
+
+- Intro desktop memakai grid dua kolom sejajar dengan frame Experience; nama, deskripsi rata kiri, dan keterampilan punya hierarki yang terpisah. Mobile tetap satu kolom.
+- Token teks sekunder kedua tema memenuhi kontras baca; navigasi desktop memakai font 14px dan target minimal 44px. Fokus keyboard dan warna seleksi mengikuti tema.
+- Inter variable disajikan lokal dari `public/fonts/`, dengan subset karakter portfolio dan bobot 400–800; lisensi SIL Open Font License ada di `public/fonts/OFL.txt`. Tidak ada permintaan Google Fonts saat runtime. `font-display: optional` mencegah pergantian font terlambat.
+- Dua baris logo memakai animasi CSS transform, bukan penempatan setiap logo lewat JavaScript per frame. Hover/fokus menghentikan animasi; di luar viewport animasi berhenti. Reduced motion dan cetak menampilkan daftar statis. Logo asli tersedia dalam sprite SVG bersama; nama keterampilan tetap tersedia untuk pembaca layar.
+- Highlight Experience berganti setiap tujuh detik hanya saat terlihat. Tombol Pause/Resume dan Next highlight memberi kontrol membaca. Transisi Projects tetap split-panel, dengan durasi 500ms dan easing keluar yang lebih tenang.
+- Layout statis/mobile dan sticky/desktop dipilih oleh media query sejak HTML pertama, bukan mengganti seluruh struktur setelah hydration. Semua konten tetap ada untuk reduced motion/cetak. Scroll snap dokumen dihapus agar pergantian ukuran layout tidak menarik posisi baca.
+- Gambar proyek memakai WebP 640/1200px, `srcSet`, dimensi eksplisit, lazy loading, dan decoding async. CSS Tailwind ringkas di-inline oleh opsi Next.js `experimental.inlineCss` untuk mengurangi waterfall kunjungan pertama; tradeoff: CSS tidak di-cache terpisah dari HTML.
+
+
 Preview lokal tanpa deployment:
 
 ```bash
@@ -61,6 +72,28 @@ python3 -m http.server 4173 --directory out
 ```
 
 Buka [http://127.0.0.1:4173](http://127.0.0.1:4173). Hentikan server dengan `Ctrl+C`.
+
+### Lighthouse production build
+
+Pengukuran memakai Lighthouse CLI **13.5.0**, Headless Chrome **155**, static export `npm run build`, profil bawaan mobile serta `--preset=desktop`. Semua kategori bawaan dijalankan; tidak ada override throttling, kategori, user agent, atau konten khusus audit.
+
+Hasil lokal melalui HTTPS/HTTP2 + gzip (`https://127.0.0.1:4185/`), tiga pengukuran berurutan per profil:
+
+| Profil | Run | Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- | --- | --- |
+| Mobile | 1 | 100 | 100 | 100 | 100 |
+| Mobile | 2 | 100 | 100 | 100 | 100 |
+| Mobile | 3 | 100 | 100 | 100 | 100 |
+| Desktop | 1 | 100 | 100 | 100 | 100 |
+| Desktop | 2 | 100 | 100 | 100 | 100 |
+| Desktop | 3 | 100 | 100 | 100 | 100 |
+
+Median Performance: mobile **100**, desktop **100**. Mobile memakai simulasi RTT 150ms, 1638.4 Kbps, CPU 4×, viewport 412×823; desktop RTT 40ms, 10240 Kbps, CPU 1×, viewport 1350×940. CLI `--ignore-certificate-errors` hanya untuk sertifikat self-signed preview lokal, bukan mematikan audit Lighthouse. Tidak ada perubahan trust store atau deployment.
+
+Keterbatasan penting: preview HTTP/1.1 + gzip (`http://127.0.0.1:4184/`) pada build yang sama menghasilkan mobile **97/97/97**, desktop **100/100/100**, kategori lain 100. Karena itu angka 100 bukan janji untuk setiap server: transport, kompresi, mesin, dan jaringan memengaruhi hasil. Preview Python sederhana di atas tidak menyediakan kompresi/HTTP2; gunakan server produksi saat membandingkan. Deployment Vercel/nginx tetap tidak diubah dan belum diaudit melalui URL publik.
+
+Laporan mentah JSON/HTML, screenshot sebelum/sesudah, konfigurasi profil, dan runner disimpan di luar repo pada direktori bukti tugas `portfolio-impeccable-polish-v4`: `final-{mobile,desktop}-{1,2,3}.report.{json,html}`, `final-results.json`, `http1-final-*`, serta `lighthouse-final.py`. Pengukuran ulang: jalankan production export melalui server HTTP2 + gzip, lalu `npx lighthouse@13.5.0 <URL> --output=json --output=html --output-path=<direktori-bukti>/mobile-1 --chrome-flags="--headless"`; tambahkan `--preset=desktop` untuk desktop. Ulangi tiga kali tanpa mengganti profil. Audit browser `chrome-devtools-axi lighthouse` juga menghasilkan 100 untuk Accessibility, Best Practices, dan SEO di kedua tema pada desktop/mobile; alat itu tidak mengukur Performance.
+
 
 ## Docker
 
