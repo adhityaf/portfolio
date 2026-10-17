@@ -31,7 +31,7 @@ export function SiteHeader() {
   return (
     <header className="scroll-header fixed inset-x-0 top-0 z-20 bg-surface print:hidden">
       <div className="mx-auto flex min-h-16 w-[calc(100%-2rem)] max-w-frame items-center justify-between gap-8 xs:w-[calc(100%-3rem)]">
-        <a className="flex min-h-11 min-w-11 w-fit items-center text-sm font-extrabold tracking-[-0.05em] text-ink hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral nav:min-h-0 nav:min-w-0" href="#top" aria-label="Adhitya Febhiakbar, home" onClick={() => setOpen(false)}>AF</a>
+        <a className="flex min-h-11 min-w-11 w-fit items-center text-sm font-extrabold tracking-[-0.04em] text-ink hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#top" aria-label="AF — Adhitya Febhiakbar, home" onClick={() => setOpen(false)}>AF</a>
         <div className="flex items-center gap-2 nav:gap-8">
           <ThemeToggle />
         <button
@@ -48,7 +48,7 @@ export function SiteHeader() {
           </svg>
         </button>
         <div id="header-navigation-menu" className="header-menu nav:order-first nav:flex nav:flex-wrap nav:items-center nav:gap-x-8 nav:gap-y-2" data-open={open}>
-          <nav className="primary-navigation grid gap-1 text-sm font-semibold text-copy [&>a]:flex [&>a]:min-h-11 [&>a]:items-center [&>a]:px-3 nav:flex nav:flex-wrap nav:gap-x-8 nav:gap-y-1 nav:text-xs nav:text-muted nav:[&>a]:min-h-0 nav:[&>a]:px-0" aria-label="Primary navigation" onClick={() => setOpen(false)}>
+          <nav className="primary-navigation grid gap-1 text-sm font-semibold text-copy [&>a]:flex [&>a]:min-h-11 [&>a]:items-center [&>a]:px-3 nav:flex nav:flex-wrap nav:gap-x-8 nav:gap-y-1 nav:text-sm nav:text-muted nav:[&>a]:px-0" aria-label="Primary navigation" onClick={() => setOpen(false)}>
             <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#top">About</a>
             <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#experience">Experience</a>
             <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#projects">Projects</a>

@@ -155,16 +155,18 @@ export default function Page() {
       <SiteHeader />
 
       <main id="main-content">
-        <section className="viewport-section scroll-hero flex min-h-svh flex-col items-center justify-center-safe px-4 pt-36 pb-16 text-left xs:px-6 nav:h-svh nav:overflow-y-auto nav:pt-28 nav:pb-8 nav:text-center print:h-auto print:overflow-visible print:px-0 print:py-0 print:pb-8" id="top" aria-labelledby="page-title">
-          <div className="flex w-full shrink-0 flex-col items-center gap-6">
-            <div className="flex min-w-0 items-center justify-center gap-4 nav:gap-5" data-scroll-reveal>
-              <div className="grid size-12 shrink-0 place-items-center rounded-full bg-surface-strong text-lg font-extrabold tracking-[-0.06em] text-coral nav:size-16 nav:text-xl print:size-14" aria-hidden="true">AF</div>
+        <section className="viewport-section scroll-hero flex min-h-svh flex-col justify-center-safe px-4 pt-28 pb-16 text-left xs:px-6 nav:py-28 print:h-auto print:px-0 print:py-0 print:pb-8" id="top" aria-labelledby="page-title">
+          <div className="mx-auto grid w-full max-w-frame items-center gap-12 nav:grid-cols-[1.2fr_1fr] nav:gap-16 print:block">
+            <div className="min-w-0">
+            <div className="flex min-w-0 items-center gap-4 nav:gap-5" data-scroll-reveal>
+              <div className="grid size-12 shrink-0 place-items-center rounded-full bg-surface-strong text-lg font-extrabold tracking-[-0.04em] text-coral nav:hidden print:grid" aria-hidden="true">AF</div>
               <div className="min-w-0 text-left">
                 <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">Software Engineer</p>
-                <h1 className="mt-2 max-w-[16ch] text-[clamp(2rem,8vw,4.25rem)] leading-[0.95] font-bold tracking-[-0.07em] nav:text-[clamp(2.4rem,8vw,4.25rem)] print:text-5xl" id="page-title">Adhitya Febhiakbar</h1>
+                <h1 className="mt-3 max-w-[16ch] text-[clamp(2rem,8vw,4.25rem)] leading-[1.02] font-bold tracking-[-0.04em] print:text-5xl" id="page-title">Adhitya Febhiakbar</h1>
               </div>
             </div>
-            <p className="m-0 w-full max-w-copy text-base leading-7 text-copy nav:text-justify nav:text-[1.02rem] nav:leading-[1.65] nav:text-muted nav:[text-align-last:center]" data-scroll-reveal>Software engineer specialized in building reliable, high-throughput systems. I spend my time designing event-driven services, handling large-scale data migrations, and making sure APIs stay resilient under real production traffic. Tech-stack agnostic, deeply focused on solid architecture, automated testing, and code that is easy to maintain.</p>
+            <p className="mt-6 w-full max-w-copy text-base leading-7 text-copy nav:text-lg nav:leading-relaxed" data-scroll-reveal>Software engineer specialized in building reliable, high-throughput systems. I spend my time designing event-driven services, handling large-scale data migrations, and making sure APIs stay resilient under real production traffic. Tech-stack agnostic, deeply focused on solid architecture, automated testing, and code that is easy to maintain.</p>
+            </div>
             <SkillMarquee rows={skillLogoRows} assetPrefix="" />
           </div>
         </section>
@@ -179,8 +181,8 @@ export default function Page() {
         <div className="flex w-full shrink-0 flex-col items-center gap-6" data-scroll-reveal>
           <div>
             <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">Contact</p>
-            <h2 className="mx-0 mt-2 max-w-[24ch] text-[clamp(1.85rem,4vw,3rem)] leading-tight font-bold tracking-[-0.055em] nav:mx-auto" id="contact-title">Ready to team up?</h2>
-            <p className="mx-auto mt-5 w-full max-w-copy text-base leading-7 text-copy nav:text-justify nav:text-[1.25rem] nav:leading-[1.65] nav:text-muted nav:[text-align-last:center]">There&apos;s still room in my experience section. If you want an engineer who pairs production experience with accountable AI-assisted delivery, let&apos;s talk. I build backend systems for high-volume payments, large-scale migrations, and resilient APIs. My AI-native workflow combines custom skills and specialist coding agents with unit tests, runtime verification, and code review.</p>
+            <h2 className="mx-0 mt-2 max-w-[24ch] text-[clamp(1.85rem,4vw,3rem)] leading-tight font-bold tracking-[-0.04em] nav:mx-auto" id="contact-title">Ready to team up?</h2>
+            <p className="mx-auto mt-5 w-full max-w-copy text-base leading-7 text-copy nav:text-lg nav:leading-relaxed">There&apos;s still room in my experience section. If you want an engineer who pairs production experience with accountable AI-assisted delivery, let&apos;s talk. I build backend systems for high-volume payments, large-scale migrations, and resilient APIs. My AI-native workflow combines custom skills and specialist coding agents with unit tests, runtime verification, and code review.</p>
           </div>
           <ContactActions />
         </div>

@@ -20,7 +20,6 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const animationFrame = useRef<number | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHydrated, setIsHydrated] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -35,7 +34,6 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
       setIsMobile(mobilePreference.matches);
     };
 
-    setIsHydrated(true);
     updatePreferences();
     motionPreference.addEventListener("change", updatePreferences);
     printPreference.addEventListener("change", updatePreferences);
@@ -48,7 +46,7 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
   }, []);
 
   useEffect(() => {
-    if (!isHydrated || isMobile || isPrinting || reducedMotion || items.length < 2) return;
+    if (isMobile || isPrinting || reducedMotion || items.length < 2) return;
 
     const updatePage = () => {
       animationFrame.current = null;
@@ -82,7 +80,7 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
         animationFrame.current = null;
       }
     };
-  }, [isHydrated, isMobile, isPrinting, items.length, reducedMotion]);
+  }, [isMobile, isPrinting, items.length, reducedMotion]);
 
   const navigateTo = (index: number) => {
     const section = sectionRef.current;
@@ -99,20 +97,18 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
 
   if (items.length === 0) return null;
 
-  if (!isHydrated || isMobile || reducedMotion || isPrinting) {
-    return (
+  const staticContent = (
       <section
-        id="projects"
-        className="bg-surface py-14 nav:scroll-mt-32 nav:py-16"
-        aria-labelledby="projects-title"
+        className="static-carousel bg-surface py-14 nav:scroll-mt-32 nav:py-16"
+        aria-labelledby="projects-title-static"
       >
         <div className="mx-auto w-[calc(100%-2rem)] max-w-frame xs:w-[calc(100%-3rem)]">
           <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-blue uppercase">
             Work
           </p>
           <h2
-            className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.055em]"
-            id="projects-title"
+            className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.04em]"
+            id="projects-title-static"
           >
             Projects
           </h2>
@@ -125,10 +121,13 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
                 <img
                   className="aspect-video h-auto w-full object-cover nav:aspect-auto nav:h-full"
                   src={item.image}
+                  srcSet={`${item.image.replace(".webp", "-640.webp")} 640w, ${item.image} 1200w`}
+                  sizes="(min-width: 700px) 50vw, 100vw"
                   alt={item.imageAlt}
-                  width="1600"
-                  height="1067"
+                  width="1200"
+                  height="675"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="grid content-center p-5 nav:p-10">
                   <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">
@@ -146,13 +145,13 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
         </div>
       </section>
     );
-  }
 
   return (
+    <section id="projects">
+      {staticContent}
     <section
       ref={sectionRef}
-      id="projects"
-      className="relative bg-canvas"
+      className="motion-carousel relative bg-canvas"
       style={{ height: `${items.length * 100}svh` }}
       aria-labelledby="projects-title"
     >
@@ -172,7 +171,7 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
               Work
             </p>
             <h2
-              className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.055em]"
+              className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.04em]"
               id="projects-title"
             >
               Projects
@@ -193,22 +192,26 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
                 <img
                   className="project-image h-full w-full object-cover opacity-65"
                   src={item.image}
+                  srcSet={`${item.image.replace(".webp", "-640.webp")} 640w, ${item.image} 1200w`}
+                  sizes="50vw"
                   alt={item.imageAlt}
-                  width="1600"
-                  height="1067"
+                  width="1200"
+                  height="675"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="project-image-overlay absolute inset-0 bg-gradient-to-t from-canvas/60 via-transparent to-canvas/20" />
               </div>
             );
             const contentPanel = (
-              <div className="flex h-full flex-col justify-center-safe overflow-y-auto bg-surface px-6 pt-8 pb-28 nav:px-[clamp(2rem,7vw,7rem)] nav:pt-48 [&>*]:shrink-0">
+              <div className="flex h-full flex-col justify-center-safe overflow-y-auto bg-canvas px-6 pt-8 pb-28 nav:px-[clamp(2rem,7vw,7rem)] nav:pt-48 [&>*]:shrink-0">
                 <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">
                   {item.eyebrow}
                 </p>
-                <h3 className="mt-4 max-w-[13ch] text-[clamp(2rem,5vw,4.5rem)] leading-[0.95] font-bold tracking-[-0.06em]">
+                <h3 className="mt-4 max-w-[13ch] text-[clamp(2rem,5vw,4.5rem)] leading-[1.02] font-bold tracking-[-0.04em]">
                   {item.title}
                 </h3>
-                <p className="mt-6 max-w-xl text-[clamp(.95rem,1.5vw,1.15rem)] text-copy">
+                <p className="mt-6 max-w-xl text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-copy">
                   {item.description}
                 </p>
                 <p className="mt-6 max-w-lg text-sm text-muted">{item.detail}</p>
@@ -222,13 +225,13 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
                 aria-hidden={index !== currentIndex}
               >
                 <div
-                  className={`min-h-0 transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${imageOnLeft ? "order-first" : "order-last"} nav:order-none`}
+                  className={`min-h-0 transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] ${imageOnLeft ? "order-first" : "order-last"} nav:order-none`}
                   style={{ transform: `translateY(${offset * 100}%)` }}
                 >
                   {imageOnLeft ? imagePanel : contentPanel}
                 </div>
                 <div
-                  className={`min-h-0 transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${imageOnLeft ? "order-last" : "order-first"} nav:order-none`}
+                  className={`min-h-0 transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] ${imageOnLeft ? "order-last" : "order-first"} nav:order-none`}
                   style={{ transform: `translateY(${offset * -100}%)` }}
                 >
                   {imageOnLeft ? contentPanel : imagePanel}
@@ -273,6 +276,7 @@ export default function AnimatedScroll({ items }: AnimatedScrollProps) {
           ))}
         </nav>
       </div>
+    </section>
     </section>
   );
 }

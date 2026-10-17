@@ -35,7 +35,6 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const animationFrame = useRef<number | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHydrated, setIsHydrated] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -49,7 +48,6 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
       setIsPrinting(print.matches);
       setIsMobile(mobile.matches);
     };
-    setIsHydrated(true);
     sync();
     motion.addEventListener("change", sync);
     print.addEventListener("change", sync);
@@ -62,7 +60,7 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
   }, []);
 
   useEffect(() => {
-    if (!isHydrated || isMobile || isPrinting || reducedMotion || slides.length < 2) return;
+    if (isMobile || isPrinting || reducedMotion || slides.length < 2) return;
 
     const updatePage = () => {
       animationFrame.current = null;
@@ -95,7 +93,7 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
         animationFrame.current = null;
       }
     };
-  }, [isHydrated, isMobile, isPrinting, reducedMotion, slides.length]);
+  }, [isMobile, isPrinting, reducedMotion, slides.length]);
 
   const navigateTo = (index: number) => {
     const section = sectionRef.current;
@@ -113,18 +111,15 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
   if (slides.length === 0) return null;
 
   const current = slides[currentIndex];
-  const staticMode = !isHydrated || isMobile || reducedMotion || isPrinting;
 
-  if (staticMode) {
-    return (
+  const staticContent = (
       <section
-        id="experience"
-        className="viewport-section scroll-section mx-auto flex w-[calc(100%-2rem)] max-w-frame flex-col justify-center-safe py-14 xs:w-[calc(100%-3rem)] nav:h-svh nav:overflow-y-auto nav:pt-24 nav:pb-12 print:h-auto print:w-full print:max-w-none print:overflow-visible print:py-8"
-        aria-labelledby="experience-title"
+        className="static-carousel viewport-section scroll-section mx-auto flex w-[calc(100%-2rem)] max-w-frame flex-col justify-center-safe py-14 xs:w-[calc(100%-3rem)] nav:pt-24 nav:pb-12 print:h-auto print:w-full print:max-w-none print:overflow-visible print:py-8"
+        aria-labelledby="experience-title-static"
       >
         <div data-scroll-heading>
           <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-blue uppercase">Career</p>
-          <h2 className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.055em]" id="experience-title">Experience</h2>
+          <h2 className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.04em]" id="experience-title-static">Experience</h2>
         </div>
         <nav className="mt-6 grid grid-cols-2 gap-3 nav:hidden print:hidden" aria-label="Experience">
           {slides.map((slide) => (
@@ -150,10 +145,13 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
               </div>
               <img
                 src={slide.image}
+                srcSet={`${slide.image.replace(".webp", "-640.webp")} 640w, ${slide.image} 1200w`}
+                sizes="(min-width: 700px) 50vw, 100vw"
                 alt={slide.imageAlt}
-                width={1440}
-                height={900}
+                width={1200}
+                height={675}
                 loading="lazy"
+                decoding="async"
                 className="mt-5 aspect-video h-auto w-full rounded object-cover nav:hidden print:hidden"
               />
               <ul className="mt-6 list-disc space-y-4 pl-5 leading-7 text-copy marker:text-blue nav:space-y-3 nav:leading-[1.65]">
@@ -166,13 +164,13 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
         </div>
       </section>
     );
-  }
 
   return (
+    <section id="experience">
+      {staticContent}
     <section
       ref={sectionRef}
-      id="experience"
-      className="relative bg-canvas"
+      className="motion-carousel relative bg-canvas"
       style={{ height: `${slides.length * 100}svh` }}
       aria-labelledby="experience-title"
       data-experience-carousel
@@ -202,7 +200,7 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
         <div className="relative mx-auto flex h-full w-[calc(100%-2rem)] max-w-frame flex-col pt-28 pb-8 xs:w-[calc(100%-3rem)] nav:pt-24">
           <div>
             <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-blue uppercase">Career</p>
-            <h2 className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.055em]" id="experience-title">Experience</h2>
+            <h2 className="mt-2 text-[clamp(1.85rem,4vw,3rem)] leading-none font-bold tracking-[-0.04em]" id="experience-title">Experience</h2>
           </div>
 
           <div className="mt-8 grid min-h-0 flex-1 grid-cols-1 items-center gap-8 nav:grid-cols-2 nav:gap-12">
@@ -211,7 +209,7 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
                 <span className="inline-block h-px w-8 bg-current" aria-hidden="true" />
                 {String(currentIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
               </p>
-              <h3 className="mt-4 max-w-[16ch] text-[clamp(2rem,5vw,3.4rem)] leading-[0.95] font-bold tracking-[-0.06em]">
+              <h3 className="mt-4 max-w-[16ch] text-[clamp(2rem,5vw,3.4rem)] leading-[1.05] font-bold tracking-[-0.04em]">
                 {current.title}
               </h3>
               <p className={`mt-3 text-sm font-extrabold tracking-[0.08em] uppercase ${current.accent === "blue" ? "text-blue" : "text-coral"}`}>
@@ -243,9 +241,13 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
               <div className="overflow-hidden rounded-lg bg-surface-strong">
                 <img
                   src={current.image}
+                  srcSet={`${current.image.replace(".webp", "-640.webp")} 640w, ${current.image} 1200w`}
+                  sizes="50vw"
                   alt={current.imageAlt}
-                  width={1440}
-                  height={900}
+                  width={1200}
+                  height={675}
+                  loading="lazy"
+                  decoding="async"
                   className="aspect-16/10 h-auto w-full object-cover"
                 />
               </div>
@@ -279,6 +281,7 @@ export function ExperienceCarousel({ slides }: ExperienceCarouselProps) {
           </div>
         </div>
       </div>
+    </section>
     </section>
   );
 }
