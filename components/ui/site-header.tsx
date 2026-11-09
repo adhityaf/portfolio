@@ -52,6 +52,7 @@ export function SiteHeader() {
             <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#top">About</a>
             <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#experience">Experience</a>
             <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#projects">Projects</a>
+            <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#talks">Talks</a>
             <a className="hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="#contact">Contact</a>
           </nav>
         </div>
