@@ -172,6 +172,17 @@ export default function Page() {
         <ExperienceCarousel slides={experienceSlides} />
 
         <AnimatedScroll items={whatIBuildItems} />
+
+        <section className="viewport-section scroll-section flex min-h-[calc(100svh-7rem)] flex-col items-center justify-center-safe px-4 pt-16 pb-24 text-left xs:px-6 nav:h-svh nav:min-h-0 nav:overflow-y-auto nav:py-16 nav:text-center print:h-auto print:overflow-visible print:px-0 print:py-8" id="talks" aria-labelledby="talks-title">
+          <div className="flex w-full shrink-0 flex-col items-center gap-6" data-scroll-reveal>
+            <div>
+              <p className="m-0 text-xs font-extrabold tracking-[0.17em] text-coral uppercase">Talks</p>
+              <h2 className="mx-0 mt-2 max-w-[20ch] text-[clamp(1.85rem,4vw,3rem)] leading-tight font-bold tracking-[-0.055em] nav:mx-auto" id="talks-title">How to Trust Your Agents</h2>
+              <p className="mx-auto mt-5 w-full max-w-copy text-base leading-7 text-copy nav:text-justify nav:text-[1.25rem] nav:leading-[1.65] nav:text-muted nav:[text-align-last:center]">Eighteen slides on building AI agents you can trust: planning, reusable skills, and verification grounded in evidence.</p>
+            </div>
+            <a className="inline-flex min-h-12 items-center justify-center rounded-full bg-surface px-5 py-3 text-sm font-bold text-ink hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral" href="/talks/how-to-trust-your-agents">View the talk</a>
+          </div>
+        </section>
       </main>
 
 

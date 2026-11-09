@@ -1,0 +1,110 @@
+[
+  {
+    "slide": 1,
+    "title": "How to Trust Your Agents",
+    "clicks": 0,
+    "states": 1
+  },
+  {
+    "slide": 2,
+    "title": "Nulis kode bukan lagi bottleneck.\nSekarang: gimana kita tahu hasilnya benar?",
+    "clicks": 0,
+    "states": 1
+  },
+  {
+    "slide": 3,
+    "title": "Layers of AI engineering",
+    "clicks": 3,
+    "states": 4
+  },
+  {
+    "slide": 4,
+    "title": "Prompt engineering",
+    "clicks": 1,
+    "states": 2
+  },
+  {
+    "slide": 5,
+    "title": "Context engineering",
+    "clicks": 1,
+    "states": 2
+  },
+  {
+    "slide": 6,
+    "title": "Harness engineering",
+    "clicks": 2,
+    "states": 3
+  },
+  {
+    "slide": 7,
+    "title": "Loop engineering",
+    "clicks": 1,
+    "states": 2
+  },
+  {
+    "slide": 8,
+    "title": "Agents workflow",
+    "clicks": 4,
+    "states": 5
+  },
+  {
+    "slide": 9,
+    "title": "Planning",
+    "clicks": 4,
+    "states": 5
+  },
+  {
+    "slide": 10,
+    "title": "Context window",
+    "clicks": 3,
+    "states": 4
+  },
+  {
+    "slide": 11,
+    "title": "Role · Agent · Skill",
+    "clicks": 2,
+    "states": 3
+  },
+  {
+    "slide": 12,
+    "title": "Kapan dan kenapa skill",
+    "clicks": 9,
+    "states": 10
+  },
+  {
+    "slide": 13,
+    "title": "Anatomi skill",
+    "clicks": 6,
+    "states": 7
+  },
+  {
+    "slide": 14,
+    "title": "Kasus nyata: unit test hijau, runtime panic",
+    "clicks": 3,
+    "states": 4
+  },
+  {
+    "slide": 15,
+    "title": "Verification skill",
+    "clicks": 3,
+    "states": 4
+  },
+  {
+    "slide": 16,
+    "title": "Trust dibangun dari:",
+    "clicks": 2,
+    "states": 3
+  },
+  {
+    "slide": 17,
+    "title": "Q&A",
+    "clicks": 0,
+    "states": 1
+  },
+  {
+    "slide": 18,
+    "title": "Referensi",
+    "clicks": 0,
+    "states": 1
+  }
+]
